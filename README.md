@@ -4,11 +4,11 @@ Easy access to the AWS S3 files
 
 ## interface fs
 
-`file` is a URL such as `s3://my.buket/my/path/file.ext`
+`file` is a URL chema such as `s3://my.buket/my/path/file.ext`
 
-### createReadStream
+### fs.createReadStream(file)
 
-Create and returns a read stream
+Create and returns a stream for reading
 
 ```js
 const fs = require('fs');
@@ -18,9 +18,9 @@ const file = 's3://buket/file.json'
 fs.createReadStream(file).pipe(process.stdout);
 ```
 
-### createReadStream
+### fs.createWriteStream(file)
 
-Create and returns a write stream. There is a callback called when the file has been written
+Create and returns a stream for writing. There is a callback called when the file has been written
 
 ```js
 var fs = require('fs');
@@ -36,7 +36,7 @@ writeStream.write('test');
 writeStream.end();
 ```
 
-### unlink
+### fs.unlink(file)
 
 remove a s3 file. There is a callback called when the file has been removed
 
@@ -50,15 +50,3 @@ fs.unlink(file, function (err, result) {
   console.log('file removed', result);
 });
 ```
-
-### unlink
-
-remove a s3 file. There is a callback called when the file has been removed
-
-//
-internals.read = function (fd, buffer, offset, length, callback) {
-  fd.read(buffer, offset, length, callback);
-};
-
-
-
