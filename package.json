@@ -1,0 +1,23 @@
+{
+  "name": "s3-fs",
+  "version": "0.1.2",
+  "description": "S3 fs",
+  "main": "lib/fs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clubifaximatic/s3-fs.git"
+  },
+  "author": "Bob <javier.noguera@clubifaximatic.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clubifaximatic/s3-fs/issues"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.4.2",
+    "debug": "^2.2.0"
+  },
+  "homepage": "https://github.com/clubifaximatic/s3-fs#readme"
+}
