@@ -11,7 +11,7 @@ Easy access to the AWS S3 files
 Create and returns a stream for reading
 
 ```js
-const fs = require('fs');
+const fs = require('s3-fs');
 
 const file = 's3://buket/file.txt'
 
@@ -23,7 +23,7 @@ fs.createReadStream(file).pipe(process.stdout);
 Create and returns a stream for writing. There is a callback called when the file has been written
 
 ```js
-var fs = require('fs');
+var fs = require('s3-fs');
 
 const file = 's3://buket/file.txt'
 
@@ -41,7 +41,7 @@ writeStream.end();
 remove a s3 file. There is a callback called when the file has been removed
 
 ```js
-var fs = require('fs');
+var fs = require('s3-fs');
 
 const file = 's3://buket/file.txt'
 
@@ -51,12 +51,14 @@ fs.unlink(file, function (err, result) {
 });
 ```
 
-### fs.readdir(dir)
+### fs.readdir(dir, [options,] callback)
 
 Return the name of files and folders ({String}) in the passed path (path must finish with '/'). If the returned name finish with '/' means it is a "folder"
 
+If passed `{ flat: true }` as options it returns all the tree under the directory, not only the first level
+
 ```js
-var fs = require('fs');
+var fs = require('s3-fs');
 
 const dir = 's3://buket/mydir/'
 
@@ -68,12 +70,12 @@ fs.unlink(dir, function (err, files) {
 });
 ```
 
-### fs.readFile(file, encoding, callback)
+### fs.readFile(file, [encoding,] callback)
 
 Return the content of the file ({Buffer}) if not encoding is specified. If encoding is specified, it is applied to the resulting buffer
 
 ```js
-var fs = require('fs');
+var fs = require('s3-fs');
 
 const file = 's3://buket/file.txt'
 
@@ -88,5 +90,4 @@ fs.readFile(file, 'base64', function (err, buffer) {
 
   console.log('file content: ', buffer.toString());
 });
-
 ```
