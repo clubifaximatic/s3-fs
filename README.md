@@ -13,7 +13,7 @@ Create and returns a stream for reading
 ```js
 const fs = require('fs');
 
-const file = 's3://buket/file.json'
+const file = 's3://buket/file.txt'
 
 fs.createReadStream(file).pipe(process.stdout);
 ```
@@ -25,7 +25,7 @@ Create and returns a stream for writing. There is a callback called when the fil
 ```js
 var fs = require('fs');
 
-const file = 's3://buket/file.json'
+const file = 's3://buket/file.txt'
 
 const writeStream = fs.createWriteStream(file, function (err, result) {
   if (err) return console.error('error', err);
@@ -43,10 +43,50 @@ remove a s3 file. There is a callback called when the file has been removed
 ```js
 var fs = require('fs');
 
-const file = 's3://buket/file.json'
+const file = 's3://buket/file.txt'
 
 fs.unlink(file, function (err, result) {
   if (err) return console.error('error', err);
   console.log('file removed', result);
 });
+```
+
+### fs.readdir(dir)
+
+Return the name of files and folders ({String}) in the passed path (path must finish with '/'). If the returned name finish with '/' means it is a "folder"
+
+```js
+var fs = require('fs');
+
+const dir = 's3://buket/mydir/'
+
+fs.unlink(dir, function (err, files) {
+  if (err) return console.error('error', err);
+  files.forEach(function(doc) {
+    console.log(doc);
+  });
+});
+```
+
+### fs.readFile(file, encoding, callback)
+
+Return the content of the file ({Buffer}) if not encoding is specified. If encoding is specified, it is applied to the resulting buffer
+
+```js
+var fs = require('fs');
+
+const file = 's3://buket/file.txt'
+
+fs.readFile(file, function (err, buffer) {
+  if (err) return console.error('error', err);
+
+  console.log('file content: ', buffer.toString());
+});
+
+fs.readFile(file, 'base64', function (err, buffer) {
+  if (err) return console.error('error', err);
+
+  console.log('file content: ', buffer.toString());
+});
+
 ```
