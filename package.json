@@ -1,6 +1,6 @@
 {
   "name": "s3-fs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "S3 fs",
   "main": "lib/fs.js",
   "scripts": {

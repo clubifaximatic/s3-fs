@@ -55,18 +55,29 @@ fs.unlink(file, function (err, result) {
 
 Return the name of files and folders ({String}) in the passed path (path must finish with '/'). If the returned name finish with '/' means it is a "folder"
 
-If passed `{ flat: true }` as options it returns all the tree under the directory, not only the first level
+*Options*
+
+  * If passed `{ flat: true }` as options it returns all the tree under the directory, not only the first level
+
+*Callback*
+
+  1. error or null if no error
+  2. array of documents or empty array if o documents found
+  3. next functon to be called (next()) if there are more results, or `null if no more results
 
 ```js
 var fs = require('s3-fs');
 
 const dir = 's3://buket/mydir/'
 
-fs.unlink(dir, function (err, files) {
+fs.unlink(dir, function (err, files, next) {
   if (err) return console.error('error', err);
   files.forEach(function(doc) {
     console.log(doc);
   });
+
+   // more results. 
+  if (next) next();
 });
 ```
 
