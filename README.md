@@ -81,7 +81,7 @@ fs.unlink(dir, function (err, files, next) {
 });
 ```
 
-### fs.readFile(file, [encoding,] callback)
+### fs.readFile(file[, encoding], callback)
 
 Return the content of the file ({Buffer}) if not encoding is specified. If encoding is specified, it is applied to the resulting buffer
 
@@ -100,5 +100,27 @@ fs.readFile(file, 'base64', function (err, buffer) {
   if (err) return console.error('error', err);
 
   console.log('file content: ', buffer.toString());
+});
+```
+
+### fs.writeFile(file, data[, encoding], callback)
+
+Write the data into the file. If encoding is specified, it is applied
+
+```js
+var fs = require('s3-fs');
+
+const file = 's3://buket/file.txt'
+
+fs.writeFile(file, 'hello', function (err, result) {
+  if (err) return console.error('error', err);
+
+  console.log('result: ', result);
+});
+
+fs.writeFile(file, 'hello', base64', function (err, result) {
+  if (err) return console.error('error', err);
+
+  console.log('result: ', result);
 });
 ```
